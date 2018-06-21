@@ -13,5 +13,5 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('landing');
 Route::post('/login','AdminController@login');

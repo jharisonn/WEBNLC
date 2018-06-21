@@ -1,95 +1,71 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>NLC 2018</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
+</head>
 
-        <title>Laravel</title>
+<body class="grey lighten-3">
+  <header>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+      <!-- Navbar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+          <div class="container-fluid">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+              <!-- Brand -->
+              <a class="navbar-brand waves-effect" href="{{route('landing')}}" target="_blank">
+                  <strong class="blue-text">NLC 2018</strong>
+              </a>
 
-            .full-height {
-                height: 100vh;
-            }
+              
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+          </div>
+      </nav>
+      <!-- Navbar -->
 
-            .position-ref {
-                position: relative;
-            }
+      <!-- Sidebar -->
+      <div class="sidebar-fixed position-fixed">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+          <a class="logo-wrapper waves-effect">
+              <img src="https://mdbootstrap.com/img/logo/mdb-email.png" class="img-fluid" alt="">
+          </a>
 
-            .content {
-                text-align: center;
-            }
+          <div class="list-group list-group-flush">
+              <a href="#" class="list-group-item active waves-effect">
+                  <i class="fa fa-pie-chart mr-3"></i>Dashboard
+              </a>
+              <a href="#" class="list-group-item list-group-item-action waves-effect">
+                  <i class="fa fa-user mr-3"></i>Profile</a>
+              <a href="#" class="list-group-item list-group-item-action waves-effect">
+                  <i class="fa fa-table mr-3"></i>Tables</a>
+              <a href="#" class="list-group-item list-group-item-action waves-effect">
+                  <i class="fa fa-map mr-3"></i>Maps</a>
+              <a href="#" class="list-group-item list-group-item-action waves-effect">
+                  <i class="fa fa-money mr-3"></i>Orders</a>
+          </div>
 
-            .title {
-                font-size: 84px;
-            }
+      </div>
+      <!-- Sidebar -->
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+  </header>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+</body>
 </html>
