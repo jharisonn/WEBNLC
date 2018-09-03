@@ -1,71 +1,86 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>NLC 2018</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Bootstrap core CSS -->
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('/css/AdminLTE.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{asset('css/blue.css')}}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-<body class="grey lighten-3">
-  <header>
-
-      <!-- Navbar -->
-      <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-          <div class="container-fluid">
-
-              <!-- Brand -->
-              <a class="navbar-brand waves-effect" href="{{route('landing')}}" target="_blank">
-                  <strong class="blue-text">NLC 2018</strong>
-              </a>
-
-              
-
-          </div>
-      </nav>
-      <!-- Navbar -->
-
-      <!-- Sidebar -->
-      <div class="sidebar-fixed position-fixed">
-
-          <a class="logo-wrapper waves-effect">
-              <img src="https://mdbootstrap.com/img/logo/mdb-email.png" class="img-fluid" alt="">
-          </a>
-
-          <div class="list-group list-group-flush">
-              <a href="#" class="list-group-item active waves-effect">
-                  <i class="fa fa-pie-chart mr-3"></i>Dashboard
-              </a>
-              <a href="#" class="list-group-item list-group-item-action waves-effect">
-                  <i class="fa fa-user mr-3"></i>Profile</a>
-              <a href="#" class="list-group-item list-group-item-action waves-effect">
-                  <i class="fa fa-table mr-3"></i>Tables</a>
-              <a href="#" class="list-group-item list-group-item-action waves-effect">
-                  <i class="fa fa-map mr-3"></i>Maps</a>
-              <a href="#" class="list-group-item list-group-item-action waves-effect">
-                  <i class="fa fa-money mr-3"></i>Orders</a>
-          </div>
-
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{{route('landing')}}"><b>NLC</b>2018</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    @if($errors->any())
+      <p class="login-box-msg" >Masukkan Username / Password</p>
+      @foreach ($errors->all() as $error)
+        <p class="login-box-msg" style="color:red;">{{$error}}</p>
+      @endforeach
+    @endif
+    @if(session('error'))
+      <p class="login-box-msg" style="color:red;">{{session('error')}}</p>
+    @endif
+    <form action="{{route('login')}}" method="post">
+      {{ csrf_field() }}
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Username" name="username">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <!-- Sidebar -->
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" name="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-  </header>
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+<!-- jQuery 3 -->
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<!-- iCheck -->
+<script src="{{asset('js/icheck.min.js')}}"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+</script>
 </body>
 </html>

@@ -16,10 +16,10 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $incrementing = true;
-    protected $timestamps = true;
+    public $incrementing = true;
+    public $timestamps = false;
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'id_group',
     ];
 
     /**
@@ -30,4 +30,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function group(){
+      return $this->belongsTo('App\Model\Group','id_group','id_group');
+    }
+
+    public function history(){
+      return $this->hasMany('App\Model\History','id','id');
+    }
 }

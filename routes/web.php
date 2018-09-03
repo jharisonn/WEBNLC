@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('landing');
-Route::post('/login','AdminController@login');
+Route::get('/', 'AdminController@landing')->name('landing');
+Route::post('/login','AdminController@login')->name('login');
+Route::middleware(['logon'])->group(function(){
+  Route::get('/dashboard','AdminController@indexDashboard');
+  Route::get('/score/{group}','AdminController@score');
+  Route::get('/history','AdminController@history');
+  Route::get('/soal/{id}','AdminController@soal');
+  Route::get('/team','AdminController@team');
+  Route::get('/logout','AdminController@logout');
+});

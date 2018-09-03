@@ -17,8 +17,7 @@ class CreateHistory extends Migration
           $table->increments('id_history');
           $table->integer('id_team');
           $table->integer('id_soal');
-          $table->foreign('id_team')->references('id_team')->on('team');
-          $table->foreign('id_soal')->references('id_soal')->on('soal');
+          $table->integer('id');
       });
     }
 

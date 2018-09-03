@@ -17,10 +17,24 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-            $table->timestamps();
         });
         DB::table('users')->insert([
-          ['username' => 'nlc2018', 'password' => bcrypt('nlcsukses')]
+          ['username' => 'A01', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'A02', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'A03', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'A04', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'B01', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'B02', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'B03', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'B04', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'C01', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'C02', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'C03', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'C04', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'D01', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'D02', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'D03', 'password' => bcrypt('nlcsukses2018')],
+          ['username' => 'D04', 'password' => bcrypt('nlcsukses2018')],
         ]);
     }
 
