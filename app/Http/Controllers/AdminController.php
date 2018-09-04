@@ -15,6 +15,26 @@ class AdminController extends Controller
       return view('welcome');
     }
 
+    public function indexDashboard(){
+      return view('dashboard');
+    }
+
+    public function score(){
+      return view('score');
+    }
+
+    public function history(){
+      return view('history');
+    }
+
+    public function soal(){
+      return view('soal');
+    }
+
+    public function team(){
+      return view('team');
+    }
+
     public function login(Request $request){
       $rules = [
         'username' => 'required',
