@@ -8,8 +8,8 @@ class History extends Model
 {
   protected $table = 'history';
   protected $primaryKey = 'id_history';
-  protected $incrementing = true;
-  protected $timestamps = false;
+  public $incrementing = true;
+  public $timestamps = false;
 
   public function team(){
     return $this->belongsTo('App\Model\Team','id_team','id_team');
