@@ -6,6 +6,7 @@
   <title>NLC 2018</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" href="{{asset('img/logo.png')}}" />
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
@@ -86,7 +87,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="treeview menu-open active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Score</span>
             <span class="pull-right-container">
@@ -116,9 +117,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -135,6 +136,18 @@
             <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
             <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
+        </li>
+        <li>
+          <a href="{{url('/create/soal')}}">
+            <i class="fa fa-plus-square-o"></i>
+            <span>Tambah Soal</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('/delete/soal')}}">
+            <i class="fa fa-minus-square-o"></i>
+            <span>Hapus Soal</span>
+          </a>
         </li>
       </ul>
     </section>
