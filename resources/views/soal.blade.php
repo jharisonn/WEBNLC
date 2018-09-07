@@ -106,7 +106,7 @@
             <span>History</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview active open-menu">
           <a href="#">
             <i class="fa fa-folder-open-o"></i>
             <span>Soal</span>
@@ -137,15 +137,9 @@
           </ul>
         </li>
         <li>
-          <a href="{{url('/create/soal')}}">
-            <i class="fa fa-plus-square-o"></i>
-            <span>Tambah Soal</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{url('/delete/soal')}}">
-            <i class="fa fa-minus-square-o"></i>
-            <span>Hapus Soal</span>
+          <a href="{{url('/logout')}}">
+            <i class="glyphicon glyphicon-lock"></i>
+            <span>Logout</span>
           </a>
         </li>
       </ul>
@@ -155,30 +149,37 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>{{$diff}}</h1>
+      <ol class="breadcrumb">
+        <li>
+          Refresh in <span id="count">5</span>
+        </li>
+
+      </ol>
     </section>
     <section class="content">
       <div class="row">
           @foreach ($soals as $key => $soal)
-            <div class="col-md-6">
-              <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">{{$soal->kode_soal}}</h3>
-                <div class="box-tools pull-right">
-                  Score : {{$soal->score_soal}}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="info-box">
+                @if($soal->difficulty == "E")
+                <span class="info-box-icon bg-blue">
+                @elseif($soal->difficulty == "M")
+                <span class="info-box-icon bg-green">
+                @elseif($soal->difficulty == "H")
+                <span class="info-box-icon bg-yellow">
+                @endif
+                <i class="fa fa-flag-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">{{$soal->kode_soal}}</span>
+                  <span class="info-box-number" id="load-{{$key+1}}">Score : {{$soal->score_soal}}</span>
+                  <div class="input-group-btn" style="margin-top:10px;">
+                    <button type="button" style="margin-right:15px;" class="btn btn-default" data-toggle="modal" data-target="#ambil-{{$soal->kode_soal}}" onclick="stopTimer()">Ambil</button>
+                    <button type="button" style="margin-right:15px;" class="btn btn-success" data-toggle="modal" data-target="#benar-{{$soal->kode_soal}}" onclick="stopTimer()">Benar</button>
+                    <button type="button" style="margin-right:15px;" class="btn btn-danger" data-toggle="modal" data-target="#salah-{{$soal->kode_soal}}" onclick="stopTimer()">Salah</button>
+                  </div>
+
                 </div>
-              </div>
-              <div class="box-body soals">
-                <div class="item">
-                  {!! $soal->teks_soal !!}
-                </div>
-              </div>
-              <div class="box-footer">
-                <div class="input-group-btn">
-                  <button type="button" style="margin-right:15px;" class="btn btn-default" data-toggle="modal" data-target="#ambil-{{$soal->kode_soal}}">Ambil</button>
-                  <button type="button" style="margin-right:15px;" class="btn btn-success" data-toggle="modal" data-target="#benar-{{$soal->kode_soal}}">Benar</button>
-                  <button type="button" style="margin-right:15px;" class="btn btn-danger" data-toggle="modal" data-target="#salah-{{$soal->kode_soal}}">Salah</button>
-                </div>
-              </div>
+
             </div>
             </div>
           @endforeach
@@ -187,11 +188,11 @@
     </section>
   </div>
   @foreach ($soals as $soal)
-    <div class="modal fade" id="ambil-{{$soal->kode_soal}}">
+    <div class="modal fade" id="ambil-{{$soal->kode_soal}}" onclick="startTimer()">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="startTimer()">
             <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Ambil {{$soal->kode_soal}}</h4>
           </div>
@@ -210,11 +211,11 @@
     </div>
   @endforeach
   @foreach ($soals as $soal)
-    <div class="modal fade" id="benar-{{$soal->kode_soal}}">
+    <div class="modal fade" id="benar-{{$soal->kode_soal}}" onclick="startTimer()">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="startTimer()">
             <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Benar {{$soal->kode_soal}}</h4>
           </div>
@@ -233,11 +234,11 @@
     </div>
   @endforeach
   @foreach ($soals as $soal)
-    <div class="modal fade" id="salah-{{$soal->kode_soal}}">
+    <div class="modal fade" id="salah-{{$soal->kode_soal}}" onclick="startTimer()">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="startTimer()">
             <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Salah {{$soal->kode_soal}}</h4>
           </div>
@@ -290,6 +291,28 @@
       });
     </script>
   @endif
+  <script>
+  window.onload = start();
+  var refresh,countdown;
+  function start(){
+    refresh = setInterval('window.location.reload()',5000);
+    var counter = 5;
+    countdown = setInterval(function(){
+      counter--;
+      if(counter>=0){
+        span = document.getElementById('count');
+        span.innerHTML = counter;
+      }
+    }, 1000);
+  }
+  function stopTimer(){
+    clearInterval(refresh);
+    clearInterval(countdown);
+  }
+  function startTimer(){
+    start();
+  }
+  </script>
   <!-- ./wrapper -->
 
   <!-- jQuery 3 -->

@@ -19,14 +19,11 @@ Route::middleware(['logon'])->group(function(){
   Route::get('/history','AdminController@history'); //done butuh feedback
   Route::get('/leaderboard','AdminController@leaderboard'); //done butuh feedback
   Route::get('/soal/{id}','AdminController@soal'); //done butuh feedback
-  Route::get('/team/{group}','AdminController@team'); //not yet
-  Route::post('/edit/team/{id}','AdminController@editTeam'); //not yet
+  Route::get('/team/{group}','AdminController@team'); //done
+  Route::post('/edit/team/{id}','AdminController@editTeam'); //done
   Route::post('/ambil/{id}','AdminController@ambilSoal'); //done
   Route::post('/acc/{id}','AdminController@accSoal'); //done
   Route::post('/wrong/{id}','AdminController@wrongSoal');//done
-  Route::get('/create/soal','AdminController@createIndex');//done males bikin css
-  Route::post('/create/soal','AdminController@createSoal')->name('create_soal'); //done
-  Route::get('/delete/soal','AdminController@deleteIndex');//wip
-  Route::post('/delete/soal/{id}','AdminController@deleteSoal');//wip
+  Route::get('/worldmap','AdminController@worldmap'); //WIP!
   Route::get('/logout','AdminController@logout'); //done masbro
 });

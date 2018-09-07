@@ -137,15 +137,9 @@
           </ul>
         </li>
         <li>
-          <a href="{{url('/create/soal')}}">
-            <i class="fa fa-plus-square-o"></i>
-            <span>Tambah Soal</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{url('/delete/soal')}}">
-            <i class="fa fa-minus-square-o"></i>
-            <span>Hapus Soal</span>
+          <a href="{{url('/logout')}}">
+            <i class="glyphicon glyphicon-lock"></i>
+            <span>Logout</span>
           </a>
         </li>
       </ul>

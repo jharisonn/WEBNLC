@@ -23,7 +23,7 @@ class AdminController extends Controller
     public function indexDashboard(){ //done
       return view('dashboard');
     }
-
+    
     public function score($group){
       $data_group = Group::where('name_group',$group)->first();
       if($data_group || $group=='a' || $group == 'b' || $group == 'c' || $group == 'd'){
@@ -258,45 +258,6 @@ class AdminController extends Controller
         }
         return back()->with('success','Team '.$request->kode_team.' telah salah menjawab jawaban soal '.$id);
       }
-    }
-
-    public function createIndex(){
-      return view('create_soal');
-    }
-
-    public function createSoal(Request $request){
-      if($request->teks_soal == NULL){
-        return redirect('/create/soal')->with('error','Isi Soal!');
-      }
-      $check = Soal::where('difficulty',$request->difficulty)->orderBy('kode_soal','DESC')->first();
-      $num = filter_var($check->kode_soal,FILTER_SANITIZE_NUMBER_INT);
-      if($request->difficulty == 'E'){
-        $score = 30;
-      }
-      else if($request->difficulty == 'M'){
-        $score = 50;
-      }
-      else if($request->difficulty == 'H'){
-        $score = 90;
-      }
-      $test = (int)$num;
-      $test++;
-      try {
-        $soal = new Soal();
-        $soal->kode_soal = $request->difficulty.'0'.$test;
-        $soal->score_soal = $score;
-        $soal->awal_score = $score;
-        $soal->difficulty = $request->difficulty;
-        $soal->teks_soal = $request->teks_soal;
-        $soal->save();
-      } catch (\Exception $e) {
-        return json_encode([
-          'status' => 500,
-          'error' => $e
-        ]);
-      }
-      return redirect('/dashboard')->with('success','Soal berhasil ditambahkan');
-
     }
 
     public function soal($id){ //done

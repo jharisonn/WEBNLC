@@ -149,6 +149,12 @@
             <span>Hapus Soal</span>
           </a>
         </li>
+        <li>
+          <a href="{{url('/logout')}}">
+            <i class="glyphicon glyphicon-lock"></i>
+            <span>Logout</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
