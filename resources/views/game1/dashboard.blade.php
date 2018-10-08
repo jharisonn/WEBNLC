@@ -94,14 +94,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{url('/history')}}">
+          <a href="{{url('game1/history')}}">
             <i class="fa fa-sticky-note-o"></i>
             <span>History</span>
           </a>
@@ -115,10 +115,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('game1/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
+            <li><a href="{{url('game1/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('game1/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('game1/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -130,10 +130,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
@@ -166,7 +166,7 @@
             <div class="inner">
               <p>Group A</p>
             </div>
-            <a href="{{url('score/A')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/score/A')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -176,7 +176,7 @@
             <div class="inner">
               <p>Group B</p>
             </div>
-            <a href="{{url('score/B')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/score/B')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -186,7 +186,7 @@
             <div class="inner">
               <p>Group C</p>
             </div>
-            <a href="{{url('score/C')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/score/C')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -196,7 +196,7 @@
             <div class="inner">
               <p>Group D</p>
             </div>
-            <a href="{{url('score/D')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/score/D')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -211,7 +211,7 @@
             <div class="inner">
               <p>History team</p>
             </div>
-            <a href="{{url('history')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/history')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -228,7 +228,7 @@
               <h3>Soal</h3>
               <p>Leaderboard</p>
             </div>
-            <a href="{{url('leaderboard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/leaderboard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -237,7 +237,7 @@
             <div class="inner">
               <p>Easy</p>
             </div>
-            <a href="{{url('soal/Easy')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/soal/Easy')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -247,7 +247,7 @@
             <div class="inner">
               <p>Medium</p>
             </div>
-            <a href="{{url('soal/Medium')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/soal/Medium')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -257,7 +257,7 @@
             <div class="inner">
               <p>Hard</p>
             </div>
-            <a href="{{url('soal/Hard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/soal/Hard')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -271,7 +271,7 @@
             <div class="inner">
               <p>Group A</p>
             </div>
-            <a href="{{url('team/A')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/team/A')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -281,7 +281,7 @@
             <div class="inner">
               <p>Group B</p>
             </div>
-            <a href="{{url('team/B')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/team/B')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -291,7 +291,7 @@
             <div class="inner">
               <p>Group C</p>
             </div>
-            <a href="{{url('team/C')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/team/C')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -301,7 +301,7 @@
             <div class="inner">
               <p>Group D</p>
             </div>
-            <a href="{{url('team/D')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('game1/team/D')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

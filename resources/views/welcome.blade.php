@@ -57,6 +57,12 @@
       </div>
       <div class="row">
         <!-- /.col -->
+        <div class="col-xs-8">
+          <select name="game" class="form-control">
+            <option value="game1">Travian</option>
+            <option value="game2">Ngepet</option>
+          </select>
+        </div>
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
         </div>

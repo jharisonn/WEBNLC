@@ -95,14 +95,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{url('/history')}}">
+          <a href="{{url('game1/history')}}">
             <i class="fa fa-sticky-note-o"></i>
             <span>History</span>
           </a>
@@ -116,10 +116,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('game1/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
+            <li><a href="{{url('game1/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('game1/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('game1/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview active menu-open">
@@ -131,23 +131,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
-        </li>
-        <li>
-          <a href="{{url('/create/soal')}}">
-            <i class="fa fa-plus-square-o"></i>
-            <span>Tambah Soal</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{url('/delete/soal')}}">
-            <i class="fa fa-minus-square-o"></i>
-            <span>Hapus Soal</span>
-          </a>
         </li>
         <li>
           <a href="{{url('/logout')}}">
@@ -172,6 +160,7 @@
                 <th>#</th>
                 <th>Nama Team</th>
                 <th>Kode Team</th>
+                <th>Neleci</th>
                 <th>Score</th>
                 <th>Edit Score</th>
               </tr>
@@ -182,8 +171,10 @@
                   <th>{{$key+1}}</th>
                   <th>{{$group->name_team}}</th>
                   <th>{{$group->kode_team}}</th>
+                  <th>{{$group->neleci}}</th>
                   <th>{{$group->score}}</th>
-                  <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-{{$group->id_team}}">Edit</small></th>
+                  <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-{{$group->id_team}}">Edit</small>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buy-{{$group->id_team}}" style="margin-left:5px;">Buy</small></th>
                 </tr>
               @endforeach
             </tbody>
@@ -202,10 +193,40 @@
             <h4 class="modal-title">Edit score team {{$group->kode_team}}</h4>
           </div>
           <div class="modal-body">
-            <form action="{{url('/edit/team/'.$group->kode_team)}}" method="post">
+            <form action="{{url('game1/edit/team/'.$group->kode_team)}}" method="post">
               {{ csrf_field() }}
               Score awal: <input type="text" class="form-control" name="score_awal" value="{{$group->score}}" disabled />
               Score yang diganti : <input type="text" class="form-control" name="edit_score" />
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default pull-left">Ganti!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
+  @foreach ($teams as $key => $group)
+    <div class="modal fade" id="buy-{{$group->id_team}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Beli pasukan untuk {{$group->kode_team}}</h4>
+          </div>
+          <div class="modal-body">
+            <form action="{{url('game1/buy/team/'.$group->kode_team)}}" method="post">
+              {{ csrf_field() }}
+              Score awal: <input type="text" class="form-control" name="score_awal" value="{{$group->score}}" disabled />
+
+
+                <select name="buy" class="form-control" style="margin-top:10px;">
+                  <option value="pas1">Level 1</option>
+                  <option value="pas2">Level 2</option>
+                  <option value="pas3">Level 3</option>
+                </select>
+
               <div class="modal-footer">
                 <button type="submit" class="btn btn-default pull-left">Ganti!</button>
               </div>

@@ -15,15 +15,15 @@ class AdminController extends Controller
 {
     public function landing(){
       if(Auth::user()){
-        return redirect('/dashboard');
+        return redirect('game1/dashboard');
       }
       return view('welcome');
     } //done
 
     public function indexDashboard(){ //done
-      return view('dashboard');
+      return view('game1.dashboard');
     }
-    
+
     public function score($group){
       $data_group = Group::where('name_group',$group)->first();
       if($data_group || $group=='a' || $group == 'b' || $group == 'c' || $group == 'd'){
@@ -33,9 +33,9 @@ class AdminController extends Controller
                          ->orderBy('team.name_team','asc')
                          ->get();
         $data['groupname'] = $group;
-        return view('score',$data);
+        return view('game1.score',$data);
       }
-      return redirect('/dashboard')->with('error','Wrong page');
+      return redirect('game1/dashboard')->with('error','Wrong page');
     } //done
 
     public function history(){
@@ -47,36 +47,34 @@ class AdminController extends Controller
                            ->get();
       //cond : 1 (benar, team score ditambah )
       //cond : 2 (salah, score soal ditambah)
-      return view('history',$data);
+      return view('game1.history',$data);
     }
 
     public function ambilSoal($id,Request $request){
       if($request->kode_team == NULL){
         return back()->with('error','ISI KODE TEAM');
       }
+      $check = Team::where('kode_team',$request->kode_team)->first();
+      if($check == NULL){
+        return back()->with('error','KODE TEAM SALAH');
+      }
+      if($check->id_group != Auth::user()->id_group){
+        return back()->with('error','Anda salah pos!');
+      }
+      if($check->neleci - 10 < 0){
+        return back()->with('error','Neleci tidak mencukupi');
+      }
+      $check_soal = Soal::where('kode_soal',$id)->first();
+      $check_history = History::where('id_soal',$check_soal->id_soal)
+                       ->where('id_team',$check->id_team)
+                       ->where('condition','3')
+                       ->first();
+      if($check_history!=NULL){
+        return back()->with('error','Kode team '.$check->kode_team.' sudah pernah mengambil soal '.$id);
+      }
       try {
-        $check = Team::where('kode_team',$request->kode_team)->first();
-        if($check == NULL){
-          return back()->with('error','KODE TEAM SALAH');
-        }
-        if($check->score - 10 < 0){
-          return back()->with('error','Neleci tidak mencukupi');
-        }
-        else{
-          $minus_neleci = Team::where('kode_team',$request->kode_team)
-                          ->update(['score' => $check->score - 10]);
-        }
-        if($check->id_group != Auth::user()->id_group){
-          return back()->with('error','Anda salah pos!');
-        }
-        $check_soal = Soal::where('kode_soal',$id)->first();
-        $check_history = History::where('id_soal',$check_soal->id_soal)
-                         ->where('id_team',$check->id_team)
-                         ->where('condition','3')
-                         ->first();
-        if($check_history!=NULL){
-          return back()->with('error','Kode team '.$check->kode_team.' sudah pernah mengambil soal '.$id);
-        }
+        $minus_neleci = Team::where('kode_team',$request->kode_team)
+                          ->update(['neleci' => $check->neleci - 10]);
         $history = new History();
         $history->id_team = $check->id_team;
         $history->id_soal = $check_soal->id_soal;
@@ -109,17 +107,19 @@ class AdminController extends Controller
       $check_soal = Soal::where('kode_soal',$id)->first();
       $check_history = History::where('id_team',$check_team->id_team)
                       ->where('id_soal',$check_soal->id_soal)
-                      ->first();
-      if($check_history==NULL){
+                      ->orderBy('time','desc')
+                      ->get();
+      if(count($check_history)==0){
         return back()->with('error','Team '.$request->kode_team.' belum pernah mengambil soal '.$id);
       }
       else{
-        if($check_history->condition == 1 || $check_history->condition == 2){
+        if(count($check_history)>=2){
           return back()->with('error','Team '.$request->kode_team.' sudah pernah mengambil soal '.$id);
         }
         else{
           $update_team = Team::where('kode_team',$request->kode_team)
                         ->update([
+                          'neleci' => (int)$check_team->neleci + (int)$check_soal->score_soal,
                           'score' => (int)$check_team->score + (int)$check_soal->score_soal
                         ]);
           if($check_soal->difficulty == 'E'){
@@ -218,12 +218,12 @@ class AdminController extends Controller
       $check_soal = Soal::where('kode_soal',$id)->first();
       $check_history = History::where('id_team',$check_team->id_team)
                        ->where('id_soal',$check_soal->id_soal)
-                       ->first();
-      if($check_history == NULL){
+                       ->get();
+      if(count($check_history) == 0){
         return back()->with('error','Team '.$request->kode_team.' belum pernah mengambil soal '.$id);
       }
       else{
-        if($check_history->condition == 1 || $check_history->condition == 2){
+        if(count($check_history)>=2){
           return back()->with('error','Team '.$request->kode_team.' sudah pernah mengambil soal '.$id);
         }
         else{
@@ -274,9 +274,9 @@ class AdminController extends Controller
           $data['soals'] = Soal::where('difficulty','H')->get();
           $data['diff'] = 'Hard';
         }
-        return view('soal',$data);
+        return view('game1.soal',$data);
       }
-      return redirect('dashboard')->with('error','Salah page');
+      return redirect('game1/dashboard')->with('error','Salah page');
     }
 
     public function team($group){
@@ -286,9 +286,9 @@ class AdminController extends Controller
                           ->join('group','team.id_group','=','group.id_group')
                           ->get();
         $data['groupname'] = $group;
-        return view('team',$data);
+        return view('game1.team',$data);
       }
-      return redirect('/dashboard')->with('error','Salah group');
+      return redirect('game1/dashboard')->with('error','Salah group');
     }
 
     public function editTeam($id,Request $request){
@@ -323,7 +323,7 @@ class AdminController extends Controller
       $data['easiest'] = Soal::where('difficulty','E')->orderBy('score_soal','desc')->get();
       $data['mediums'] = Soal::where('difficulty','M')->orderBy('score_soal','desc')->get();
       $data['harder'] = Soal::where('difficulty','H')->orderBy('score_soal','desc')->get();
-      return view('leaderboard',$data);
+      return view('game1.leaderboard',$data);
     }
 
     public function login(Request $request){
@@ -341,12 +341,54 @@ class AdminController extends Controller
       }
       if(Auth::attempt(['username' => $request->input('username'),
       'password' => $request->input('password')])){
-        return redirect('/dashboard'); //redirect to dashboard
+        if($request->game == "game1"){
+          return redirect('/game1/dashboard'); //redirect to dashboard
+        }
+        else if($request->game == "game2"){
+          return redirect('/game2/dashboard');
+        }
       }
       return redirect('/')->with('error','Username atau password salah'); //redirect false credentials
     }
 
+    public function buyTeam(Request $request,$id){
+      $check = Team::where('kode_team',$id)->first();
+      if($request->buy=='pas1'){
+        $val = 15;
+      }
+      else if($request->buy == 'pas2'){
+        $val = 30;
+      }
+      else if($request->buy=='pas3'){
+        $val = 60;
+      }
+      else return back()->with('error','Salah input level');
+
+      if($check->neleci < $val){
+        return back()->with('error','Score tidak mencukupi');
+      }
+
+      $check->neleci = $check->neleci - $val;
+      $check->score = $check->score + $val;
+      $check->save();
+
+      $new = new History();
+
+      $new->id_team = $check->id_team;
+      $new->id_soal = 100;
+      $new->id = Auth::user()->id;
+      $new->score_team = '-'.$val;
+      $new->condition = 4;
+      $new->score_soal = 0;
+      $new->save();
+
+      return back()->with('success','Berhasil membeli pasukan');
+    }
+
     public function logout(){
+      if(Auth::user()==NULL){
+        return back()->with("error",'You are not login yet!');
+      }
       Auth::logout();
       return redirect('/');
     }

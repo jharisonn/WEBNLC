@@ -94,14 +94,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{url('/history')}}">
+          <a href="{{url('game1/history')}}">
             <i class="fa fa-sticky-note-o"></i>
             <span>History</span>
           </a>
@@ -115,10 +115,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('game1/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
+            <li><a href="{{url('game1/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('game1/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('game1/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -130,10 +130,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
@@ -197,7 +197,7 @@
             <h4 class="modal-title">Ambil {{$soal->kode_soal}}</h4>
           </div>
           <div class="modal-body">
-            <form action="{{url('/ambil/'.$soal->kode_soal)}}" method="post">
+            <form action="{{url('game1/ambil/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" class="form-control" name="kode_soal" value="{{$soal->kode_soal}}" disabled />
               Kode Team : <input type="text" class="form-control" name="kode_team"/>
@@ -220,7 +220,7 @@
             <h4 class="modal-title">Benar {{$soal->kode_soal}}</h4>
           </div>
           <div class="modal-body">
-            <form action="{{url('/acc/'.$soal->kode_soal)}}" method="post">
+            <form action="{{url('game1/acc/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" value="{{$soal->kode_soal}}" class="form-control" name="kode_soal" disabled />
               Kode Team : <input type="text" class="form-control" name="kode_team"/>
@@ -243,7 +243,7 @@
             <h4 class="modal-title">Salah {{$soal->kode_soal}}</h4>
           </div>
           <div class="modal-body">
-            <form action="{{url('/wrong/'.$soal->kode_soal)}}" method="post">
+            <form action="{{url('game1/wrong/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" value="{{$soal->kode_soal}}" class="form-control" name="kode_soal" disabled />
               Kode Team : <input type="text" class="form-control" name="kode_team"/>

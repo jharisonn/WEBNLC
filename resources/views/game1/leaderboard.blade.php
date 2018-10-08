@@ -95,14 +95,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{url('/history')}}">
+          <a href="{{url('game1/history')}}">
             <i class="fa fa-sticky-note-o"></i>
             <span>History</span>
           </a>
@@ -116,10 +116,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('game1/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
+            <li><a href="{{url('game1/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('game1/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('game1/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -131,10 +131,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
@@ -150,7 +150,7 @@
   <div class="content-wrapper">
     <section class="content">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Easy</h3>
@@ -173,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Medium</h3>
@@ -197,7 +197,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Hard</h3>

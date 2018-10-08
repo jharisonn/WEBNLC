@@ -87,7 +87,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview menu-open active">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Score</span>
             <span class="pull-right-container">
@@ -95,14 +95,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/score/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/score/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/score/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/score/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
-        <li>
-          <a href="{{url('/history')}}">
+        <li class="active">
+          <a href="{{url('game1/history')}}">
             <i class="fa fa-sticky-note-o"></i>
             <span>History</span>
           </a>
@@ -116,10 +116,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
-            <li><a href="{{url('/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
-            <li><a href="{{url('/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
-            <li><a href="{{url('/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
+            <li><a href="{{url('game1/leaderboard')}}"><i class="fa fa-circle-o"></i> Leaderboard</a></li>
+            <li><a href="{{url('game1/soal/Easy')}}"><i class="fa fa-circle-o"></i> Easy</a></li>
+            <li><a href="{{url('game1/soal/Medium')}}"><i class="fa fa-circle-o"></i> Medium</a></li>
+            <li><a href="{{url('game1/soal/Hard')}}"><i class="fa fa-circle-o"></i> Hard</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -131,10 +131,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
-            <li><a href="{{url('team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
-            <li><a href="{{url('team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
-            <li><a href="{{url('team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
+            <li><a href="{{url('game1/team/A')}}"><i class="fa fa-circle-o"></i> Group A</a></li>
+            <li><a href="{{url('game1/team/B')}}"><i class="fa fa-circle-o"></i> Group B</a></li>
+            <li><a href="{{url('game1/team/C')}}"><i class="fa fa-circle-o"></i> Group C</a></li>
+            <li><a href="{{url('game1/team/D')}}"><i class="fa fa-circle-o"></i> Group D</a></li>
           </ul>
         </li>
         <li>
@@ -147,31 +147,47 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Group {{$groupname}}</h3>
+          <h3 class="box-title">History</h3>
         </div>
         <div class="box-body">
-          <table id="grouptable" class="table table-bordered table-hover">
+          <table id="historytable" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Ranking</th>
-                <th>Nama Team</th>
+                <th>No</th>
                 <th>Kode Team</th>
-                <th>Score</th>
+                <th>Nama Team</th>
+                <th>Kode Soal</th>
+                <th>ID Admin</th>
+                <th>Kondisi</th>
+                <th>Score terhadap team</th>
+                <th>Score terhadap soal</th>
+                <th>Time</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($groups as $key => $group)
+              @foreach ($histories as $key => $history)
                 <tr>
                   <th>{{$key+1}}</th>
-                  <th>{{$group->name_team}}</th>
-                  <th>{{$group->kode_team}}</th>
-                  <th>{{$group->score}}</th>
+                  <th>{{$history->kode_team}}</th>
+                  <th>{{$history->name_team}}</th>
+                  <th>{{$history->kode_soal}}</th>
+                  <th>{{$history->username}}</th>
+                  @if ($history->condition == 1)
+                    <th><small class="label label-success">BENAR</small></th>
+                  @elseif ($history->condition == 2)
+                    <th><small class="label label-danger">SALAH</small></th>
+                  @elseif ($history->condition == 3)
+                    <th><small class="label label-info">AMBIL</small></th>
+                  @elseif ($history->condition == 4)
+                    <th><small class="label label-info">EDIT</small></th>
+                  @endif
+                  <th>{{$history->score_team}}</th>
+                  <th>{{$history->score_soal}}</th>
+                  <th>{{$history->time}}</th>
                 </tr>
               @endforeach
             </tbody>
@@ -180,49 +196,39 @@
       </div>
     </div>
   </div>
-
-  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>NLC 2018</b>
     </div>
   </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{asset('js/jquery-ui.min.js')}}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
+  </div>
+  <!-- ./wrapper -->
+  <!-- jQuery 3 -->
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
   $.widget.bridge('uibutton', $.ui.button);
-</script>
+  </script>
 
-<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('js/adminlte.min.js')}}"></script>
-<script>
-$(function(){
-  $('#grouptable').DataTable({
-    'paging'   : false,
+  <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('js/adminlte.min.js')}}"></script>
+  <script>
+  $(function(){
+  $('#historytable').DataTable({
+    'paging'   : true,
     'lengthChange' : false,
-    'searching' : false,
-    'ordering' : false
+    'pageLength' : 30,
+    'searching' : true,
+    'ordering' : true
   });
-});
+  });
 
-</script>
-</body>
-</html>
-
-
-{{-- @foreach ($groups as $group)
-{{$group->kode_team}} <br />
-{{$group->name_team}} <br />
-{{$group->score}} <br /> <br /> <br />
-
-@endforeach --}}
+  </script>
+  </body>
+  </html>
