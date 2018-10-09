@@ -30,7 +30,16 @@ Route::prefix('game1')->group(function(){
 });
 Route::prefix('game2')->group(function(){
   Route::middleware(['logon'])->group(function(){
-    Route::get('/dashboard','GameController@indexDashboard');
+    Route::get('/dashboard','GameController@indexDashboard'); //done minus content
+    Route::get('/taruhan','GameController@indexTaruhan');
+    Route::post('/taruhan','GameController@taruhan');
+    Route::get('/getTeam','GameController@getteam');
+    Route::get('/leaderboard','GameController@leaderboard');
+    Route::get('/matchmaking','GameController@matchmaking');
+    Route::get('/match','GameController@match');
+    Route::get('/match/{id}','GameController@matchID');
+    Route::get('/history','GameController@history');
+    Route::get('/history_taruhan','GameController@historyTaruhan');
   });
 });
 Route::get('/logout','AdminController@logout'); //done masbro

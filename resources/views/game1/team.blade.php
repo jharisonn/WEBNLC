@@ -293,7 +293,7 @@ $(function(){
   $('#grouptable').DataTable({
     'paging'   : false,
     'lengthChange' : false,
-    'searching' : false,
+    'searching' : true,
     'ordering' : false
   });
 });
