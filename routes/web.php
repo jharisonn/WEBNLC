@@ -36,8 +36,11 @@ Route::prefix('game2')->group(function(){
     Route::get('/getTeam','GameController@getteam');
     Route::get('/leaderboard','GameController@leaderboard');
     Route::get('/matchmaking','GameController@matchmaking');
+    Route::get('/getmatch','GameController@getMatch');
     Route::get('/match','GameController@match');
     Route::get('/match/{id}','GameController@matchID');
+    Route::post('/match/{id}','GameController@postmatchID');
+    Route::get('/getPos/{id}','GameController@getPost');
     Route::get('/history','GameController@history');
     Route::get('/history_taruhan','GameController@historyTaruhan');
   });

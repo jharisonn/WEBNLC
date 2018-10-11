@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="{{route('dashboard')}}" class="logo">
+  <a href="{{url('game2/dashboard')}}" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>NLC</b></span>
     <!-- logo for regular state and mobile devices -->

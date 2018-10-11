@@ -172,6 +172,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">{{$soal->kode_soal}}</span>
                   <span class="info-box-number" id="load-{{$key+1}}">Score : {{$soal->score_soal}}</span>
+                  <span class="info-box-number" id="load-{{$key+1}}">Stock Soal : {{$soal->stock}}</span>
                   <div class="input-group-btn" style="margin-top:10px;">
                     <button type="button" style="margin-right:15px;" class="btn btn-default" data-toggle="modal" data-target="#ambil-{{$soal->kode_soal}}" onclick="stopTimer()">Ambil</button>
                     <button type="button" style="margin-right:15px;" class="btn btn-success" data-toggle="modal" data-target="#benar-{{$soal->kode_soal}}" onclick="stopTimer()">Benar</button>

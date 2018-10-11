@@ -65,6 +65,9 @@ class AdminController extends Controller
         return back()->with('error','Neleci tidak mencukupi');
       }
       $check_soal = Soal::where('kode_soal',$id)->first();
+      if($check_soal->stock == 0){
+        return back()->with('error','Stock soal habis');
+      }
       $check_history = History::where('id_soal',$check_soal->id_soal)
                        ->where('id_team',$check->id_team)
                        ->where('condition','3')
@@ -75,6 +78,8 @@ class AdminController extends Controller
       try {
         $minus_neleci = Team::where('kode_team',$request->kode_team)
                           ->update(['neleci' => $check->neleci - 10]);
+        $check_soal->stock = $check_soal->stock -1;
+        $check_soal->save();
         $history = new History();
         $history->id_team = $check->id_team;
         $history->id_soal = $check_soal->id_soal;

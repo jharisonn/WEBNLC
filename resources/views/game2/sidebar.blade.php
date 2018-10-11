@@ -31,7 +31,7 @@
       <li>
         <a href="{{url('game2/history')}}">
           <i class="fa fa-hand-rock-o"></i>
-          <span>History</span>
+          <span>History Battle</span>
         </a>
       </li>
       <li>

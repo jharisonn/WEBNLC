@@ -31,7 +31,7 @@
           {{ csrf_field() }}
           Kode Team : <input type="text" class="form-control" name="kode_team" id="modalkode" readonly/>
           Point sekarang : <input type="text" class="form-control" name="point" id="pointskrg" readonly/>
-          Point yang ingin ditaruhkan : <input type="number" class="form-control" name="taruhan" id="pointganti" />
+          Point berubah : <input type="number" class="form-control" name="taruhan" id="pointganti" />
           Kondisi : <select class="form-control form-group" name="kondisi">
             <option value="1">Benar</option>
             <option value="0">Salah</option>

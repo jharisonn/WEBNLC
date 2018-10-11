@@ -162,7 +162,7 @@
                 <th>Ranking</th>
                 <th>Nama Team</th>
                 <th>Kode Team</th>
-                <th>Score</th>
+                <th>Neleci</th>
               </tr>
             </thead>
             <tbody>
@@ -171,7 +171,7 @@
                   <th>{{$key+1}}</th>
                   <th>{{$group->name_team}}</th>
                   <th>{{$group->kode_team}}</th>
-                  <th>{{$group->score}}</th>
+                  <th>{{$group->neleci}}</th>
                 </tr>
               @endforeach
             </tbody>

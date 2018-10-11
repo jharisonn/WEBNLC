@@ -13,9 +13,9 @@
               <th>#</th>
               <th>Kode Team 1</th>
               <th>Kode Team 2</th>
-              <th>Winner</th>
-              <th>Winner Score</th>
-              <th>Loser Score</th>
+              <th>Score terhadap Team 1</th>
+              <th>Score terhadap Team 2</th>
+              <th>Table</th>
               <th>Time</th>
             </tr>
           </thead>
@@ -25,9 +25,9 @@
                 <th>{{$key+1}}</th>
                 <th>{{$value->id_player1}}</th>
                 <th>{{$value->id_player2}}</th>
-                <th>{{$value->winner}}</th>
-                <th>{{$value->winner_score}}</th>
-                <th>{{$value->loser_score}}</th>
+                <th>{{$value->score_1}}</th>
+                <th>{{$value->score_2}}</th>
+                <th>{{$value->table}}</th>
                 <th>{{$value->created}}</th>
               </tr>
             @endforeach

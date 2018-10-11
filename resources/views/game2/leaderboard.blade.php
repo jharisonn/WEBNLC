@@ -12,6 +12,7 @@
               <tr>
                 <th style="width:10px">#</th>
                 <th>Kode Team</th>
+                <th>Nama Team</th>
                 <th>Score</th>
               </tr>
             </thead>
@@ -20,6 +21,7 @@
                 <tr>
                   <th>{{$key+1}}</th>
                   <th>{{$value->kode_team}}</th>
+                  <th>{{$value->name_team}}</th>
                   <th>{{$value->score}}</th>
                 </tr>
               @endforeach
