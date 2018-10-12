@@ -33,8 +33,8 @@
           Point sekarang : <input type="text" class="form-control" name="point" id="pointskrg" readonly/>
           Point berubah : <input type="number" class="form-control" name="taruhan" id="pointganti" />
           Kondisi : <select class="form-control form-group" name="kondisi">
-            <option value="1">Benar</option>
-            <option value="0">Salah</option>
+            <option value="1">Tambah</option>
+            <option value="0">Kurang</option>
           </select>
           <div class="modal-footer">
             <button type="submit" class="btn btn-default pull-left" id="sub" form="forminput">Taruhan</button>

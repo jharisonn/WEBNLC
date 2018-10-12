@@ -45,9 +45,13 @@
         team : text
       },
       success : function(data){
-        if(data.error == "Silahkan tunggu 1 menit sampe 3 menit untuk mendapatkan table"){
-          $('#titlemodal').html(data.error);
-          $('#message').hide();
+        if(data == "ERROR1" || data == "ERROR2"){
+          $('#titlemodal').html("Selesaikan permainan anda");
+        }
+        if(data.error){
+          console.log("heeh");
+          $('#titlemodal').html("Meja masih penuh");
+          $('#message').show();
         }
         if(data == "ERROR"){
           $('#titlemodal').html("SALAH KODE TEAM");

@@ -184,6 +184,8 @@
                     <th><small class="label label-info">AMBIL</small></th>
                   @elseif ($history->condition == 4)
                     <th><small class="label label-info">EDIT</small></th>
+                  @elseif ($history->condition == 5)
+                    <th><small class="label label-info">EDIT Neleci</small></th>
                   @endif
                   <th>{{$history->score_team}}</th>
                   <th>{{$history->score_soal}}</th>

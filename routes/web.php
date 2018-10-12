@@ -22,6 +22,7 @@ Route::prefix('game1')->group(function(){
     Route::get('/soal/{id}','AdminController@soal'); //done butuh feedback
     Route::get('/team/{group}','AdminController@team'); //done
     Route::post('/edit/team/{id}','AdminController@editTeam'); //done
+    Route::post('/editNel/team/{id}','AdminController@editNelTeam');
     Route::post('/buy/team/{id}','AdminController@buyTeam'); //done
     Route::post('/ambil/{id}','AdminController@ambilSoal'); //done
     Route::post('/acc/{id}','AdminController@accSoal'); //done
@@ -43,6 +44,9 @@ Route::prefix('game2')->group(function(){
     Route::get('/getPos/{id}','GameController@getPost');
     Route::get('/history','GameController@history');
     Route::get('/history_taruhan','GameController@historyTaruhan');
+    Route::get('/history_kartu','GameController@historyKartu');
+    Route::get('/kartu','GameController@kartu');
+    Route::post('/buykartu','GameController@buykartu');
   });
 });
 Route::get('/logout','AdminController@logout'); //done masbro

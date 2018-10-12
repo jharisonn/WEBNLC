@@ -163,6 +163,7 @@
                 <th>Neleci</th>
                 <th>Score</th>
                 <th>Edit Score</th>
+                <th>Edit Neleci</th>
               </tr>
             </thead>
             <tbody>
@@ -173,8 +174,9 @@
                   <th>{{$group->kode_team}}</th>
                   <th>{{$group->neleci}}</th>
                   <th>{{$group->score}}</th>
-                  <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-{{$group->id_team}}">Edit</small>
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buy-{{$group->id_team}}" style="margin-left:5px;">Buy</small></th>
+                  <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-{{$group->id_team}}">Edit</small></th>
+                  <th><button type="button" class="btn btn-success" data-toggle="modal" data-target="#buy-{{$group->id_team}}" style="margin-left:5px;">Buy</small>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editNe-{{$group->id_team}}" style="margin-left:5px;">Edit</small></th>
                 </tr>
               @endforeach
             </tbody>
@@ -197,6 +199,29 @@
               {{ csrf_field() }}
               Score awal: <input type="text" class="form-control" name="score_awal" value="{{$group->score}}" disabled />
               Score yang diganti : <input type="text" class="form-control" name="edit_score" />
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default pull-left">Ganti!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
+  @foreach ($teams as $key => $group)
+    <div class="modal fade" id="editNe-{{$group->id_team}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edit neleci team {{$group->kode_team}}</h4>
+          </div>
+          <div class="modal-body">
+            <form action="{{url('game1/editNel/team/'.$group->kode_team)}}" method="post">
+              {{ csrf_field() }}
+              Neleci awal: <input type="text" class="form-control" name="neleci_awal" value="{{$group->neleci}}" disabled />
+              Neleci yang diganti menjadi : <input type="text" class="form-control" name="edit_neleci" />
               <div class="modal-footer">
                 <button type="submit" class="btn btn-default pull-left">Ganti!</button>
               </div>

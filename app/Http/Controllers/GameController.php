@@ -8,6 +8,8 @@ use App\Model\Game2\History_Taruhan;
 use App\Model\Game2\History;
 use App\Model\Game2\Table;
 use App\Model\Game2\History_Table;
+use App\Model\Game2\History_Kartu;
+use App\Model\Game2\Kartu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,24 +23,53 @@ class GameController extends Controller
       return view('game2.taruhan');
     }
 
+    public function historyKartu(){
+      $data['kartu'] = History_Kartu::get();
+      return view('game2.history_kartu',$data);
+    }
+
+    public function kartu(){
+      $data['kartu'] = Kartu::get();
+      return view('game2.kartu',$data);
+    }
+
+    public function buykartu(Request $request){
+      // dd($request->input());
+      $checkteam = Team2::where('kode_team',$request->kode_team)->first();
+      if(!$checkteam){
+        return back()->with('error','Kode team salah');
+      }
+      $checkstock = Kartu::where('id_kartu',$request->id_kartu)->first();
+      // dd($checkstock);
+      if($checkstock->stock_kartu == 0){
+        return back()->with('error','Stock sudah habis');
+      }
+      else{
+        $checkstock->stock_kartu = $checkstock->stock_kartu - 1;
+        $checkstock->save();
+        $newHistory = new History_Kartu();
+        $newHistory->pembeli = $request->kode_team;
+        $newHistory->admin = Auth::user()->username;
+        $newHistory->save();
+        return back()->with('success', "Tim ".$request->kode_team.' berhasil membeli kartu '.$checkstock->nama_kartu);
+      }
+    }
+
     public function taruhan(Request $request){
       // dd($request->input());
       $skrg = $request->point;
       $ganti = $request->taruhan;
       $history = new History_Taruhan();
-      if($skrg < $ganti){
-        return back()->with('error','Point tidak mencukupi');
-      }
       $update = Team2::where('kode_team',$request->kode_team)->first();
       if($request->kondisi == 1){
-        $update->score = $update->score + (2*$ganti);
+        $update->score = $update->score + $ganti;
         $update->save();
         $history->kode_team = $request->kode_team;
         $history->kondisi = 1;
-        $history->score = "+".(2*$ganti);
+        $history->score = "+".$ganti;
         $history->admin = Auth::user()->username;
         $history->save();
-        return back()->with('success','Tim '.$request->kode_team.' bertambah '.(2*$ganti).' point');
+        return back()->with('success','Tim '.$request->kode_team.' bertambah '.$ganti.' point');
       }
       else if($request->kondisi == 0){
         $update->score = $update->score - $ganti;
@@ -54,6 +85,11 @@ class GameController extends Controller
         return back()->with('error','Salah input');
       }
 
+    }
+
+    public function match(){
+      $data['team'] = Table::get();
+      return view('game2.matchpos',$data);
     }
 
     public function getMatch(Request $request){

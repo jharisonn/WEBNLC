@@ -29,6 +29,12 @@
         </a>
       </li>
       <li>
+        <a href="{{url('game2/kartu')}}">
+          <i class="fa fa-hand-rock-o"></i>
+          <span>Stock kartu</span>
+        </a>
+      </li>
+      <li>
         <a href="{{url('game2/history')}}">
           <i class="fa fa-hand-rock-o"></i>
           <span>History Battle</span>
@@ -38,6 +44,12 @@
         <a href="{{url('game2/history_taruhan')}}">
           <i class="fa fa-hand-rock-o"></i>
           <span>History Taruhan</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{url('game2/history_kartu')}}">
+          <i class="fa fa-hand-rock-o"></i>
+          <span>History Kartu</span>
         </a>
       </li>
       <li>

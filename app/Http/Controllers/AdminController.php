@@ -370,7 +370,7 @@ class AdminController extends Controller
       else return back()->with('error','Salah input level');
 
       if($check->neleci < $val){
-        return back()->with('error','Score tidak mencukupi');
+        return back()->with('error','Neleci tidak mencukupi');
       }
 
       $check->neleci = $check->neleci - $val;
@@ -388,6 +388,35 @@ class AdminController extends Controller
       $new->save();
 
       return back()->with('success','Berhasil membeli pasukan');
+    }
+
+    public function editNelTeam(Request $request,$id){
+      // dd($request->input());
+      $check_team = Team::where('kode_team',$id)->first();
+      if($check_team == NULL){
+        return back()->with('error','Salah kode team');
+      }
+      if($request->edit_neleci < $check_team->neleci){
+        $tanda = "-";
+        $change= $check_team->neleci - $request->edit_neleci;
+      }
+      else{
+        $tanda = "+";
+        $change = $request->edit_neleci - $check_team->neleci;
+      }
+      $update_team = Team::where('kode_team',$id)
+                ->update([
+                  'neleci' => $request->edit_neleci
+                ]);
+      $history = new History();
+      $history->id_team = $check_team->id_team;
+      $history->id_soal = '100';
+      $history->id = Auth::user()->id;
+      $history->condition = 5;
+      $history->score_team = $tanda.(string)$change;
+      $history->score_soal = "+0";
+      $history->save();
+      return back()->with('success','Tim '.$check_team->kode_team.' berhasil diubah nelecinya menjadi '.$request->edit_score);
     }
 
     public function logout(){
