@@ -40,7 +40,7 @@
       </form>
     </div>
     <div class="text-center">
-      <button type="submit" class="btn btn-success" form="postMatch">Match!</button>
+      <button type="submit" class="btn btn-success" form="postMatch">Submit!</button>
     </div>
   </section>
 @endsection

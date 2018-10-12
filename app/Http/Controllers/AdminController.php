@@ -58,9 +58,6 @@ class AdminController extends Controller
       if($check == NULL){
         return back()->with('error','KODE TEAM SALAH');
       }
-      if($check->id_group != Auth::user()->id_group){
-        return back()->with('error','Anda salah pos!');
-      }
       if($check->neleci - 10 < 0){
         return back()->with('error','Neleci tidak mencukupi');
       }
@@ -374,7 +371,6 @@ class AdminController extends Controller
       }
 
       $check->neleci = $check->neleci - $val;
-      $check->score = $check->score + $val;
       $check->save();
 
       $new = new History();

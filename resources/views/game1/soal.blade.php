@@ -201,7 +201,7 @@
             <form action="{{url('game1/ambil/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" class="form-control" name="kode_soal" value="{{$soal->kode_soal}}" disabled />
-              Kode Team : <input type="text" class="form-control" name="kode_team"/>
+              Kode Team : <input type="text" class="form-control" name="kode_team" onkeydown="stopTimer()"/>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-default pull-left">Ambil</button>
               </form>
@@ -224,7 +224,7 @@
             <form action="{{url('game1/acc/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" value="{{$soal->kode_soal}}" class="form-control" name="kode_soal" disabled />
-              Kode Team : <input type="text" class="form-control" name="kode_team"/>
+              Kode Team : <input type="text" class="form-control" name="kode_team" onkeydown="stopTimer()"/>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-success pull-left">Benar</button>
               </form>
@@ -247,7 +247,7 @@
             <form action="{{url('game1/wrong/'.$soal->kode_soal)}}" method="post">
               {{ csrf_field() }}
               Kode Soal : <input type="text" value="{{$soal->kode_soal}}" class="form-control" name="kode_soal" disabled />
-              Kode Team : <input type="text" class="form-control" name="kode_team"/>
+              Kode Team : <input type="text" class="form-control" name="kode_team" onkeydown="stopTimer()"/>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-danger pull-left">Salah</button>
               </form>

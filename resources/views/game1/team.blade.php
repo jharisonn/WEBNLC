@@ -243,7 +243,7 @@
           <div class="modal-body">
             <form action="{{url('game1/buy/team/'.$group->kode_team)}}" method="post">
               {{ csrf_field() }}
-              Score awal: <input type="text" class="form-control" name="score_awal" value="{{$group->score}}" disabled />
+              Neleci : <input type="text" class="form-control" name="score_awal" value="{{$group->neleci}}" disabled />
 
 
                 <select name="buy" class="form-control" style="margin-top:10px;">

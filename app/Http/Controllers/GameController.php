@@ -167,6 +167,10 @@ class GameController extends Controller
           }
         }
       }
+      else if(count($coba)==15){
+        $data['error'] = "Sudah mencapai batas maksimum untuk melakukan pertarungan";
+        return json_encode($data);
+      }
       else{
         $flagteam2 = 0;
         $check = DB::connection('game2')
@@ -259,6 +263,9 @@ class GameController extends Controller
     }
 
     public function postmatchID(Request $request, $id){
+      if(!$request->id_player1 || !$request->id_player2 || !$request->score_1 || !$request->score_2){
+        return back()->with('error','Masih ada inputan yang kosong');
+      }
       $new = Table::where('id_player1',$request->id_player1)->where('id_player2',$request->id_player2)->where('no_table',$id)->first();
       $new->id_player1 = NULL;
       $new->id_player2 = NULL;
